@@ -1,5 +1,6 @@
 package com.andrade.security.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,6 @@ public class RegisterUserController {
 
     @PostMapping("/users")
     public ResponseEntity<UserRegisterResponse> registerUser(@Valid @RequestBody UserRegisterRequest user) {
-        return ResponseEntity.status(200).body(registerService.saveUser(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(registerService.saveUser(user));
     }
 }
