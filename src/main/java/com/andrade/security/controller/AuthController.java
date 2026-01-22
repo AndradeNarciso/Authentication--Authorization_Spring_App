@@ -1,5 +1,7 @@
 package com.andrade.security.controller;
 
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,13 +20,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AuthController {
 
+    private final LoginService loginService;
 
-private final LoginService loginService;
-    
     @PostMapping("/user/login")
-    public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest loginUserRequest){
-        loginService.loginUser(loginUserRequest);
-        return null;
+    public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest loginUserRequest) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(loginService.loginUser(loginUserRequest));
+
     }
-    
+
 }
