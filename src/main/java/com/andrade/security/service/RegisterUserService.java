@@ -1,5 +1,6 @@
 package com.andrade.security.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.andrade.security.domain.User;
@@ -16,9 +17,11 @@ public class RegisterUserService {
 
     private final UserRepository repository;
     private final RegisterMapper mapper;
+    private final PasswordEncoder encoder;
 
     public UserRegisterResponse saveUser(UserRegisterRequest userRequest) {
-        User user = User.builder().password(userRequest.password()).name(userRequest.name()).email(userRequest.email())
+        User user = User.builder().password(encoder.encode(userRequest.password())).name(userRequest.name())
+                .email(userRequest.email())
                 .build();
         repository.save(user);
         return (mapper.userToResponse(user));

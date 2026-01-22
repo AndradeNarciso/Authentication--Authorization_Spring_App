@@ -20,7 +20,7 @@ public class AuthController {
 
 
     
-    @PostMapping("user/login")
+    @PostMapping("/user/login")
     public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest loginParams){
         return null;
     }
