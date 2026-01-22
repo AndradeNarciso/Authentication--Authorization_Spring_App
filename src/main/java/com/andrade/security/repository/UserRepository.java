@@ -12,4 +12,5 @@ import com.andrade.security.domain.User;
 @Repository
 public interface  UserRepository extends JpaRepository<User,UUID>{
     Optional<UserDetails> findUserByEmail(String email);
+    
 }

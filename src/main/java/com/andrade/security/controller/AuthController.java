@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.andrade.security.dto.login.UserLoginRequest;
 import com.andrade.security.dto.login.UserLoginResponse;
-
+import com.andrade.security.service.LoginService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,9 +19,11 @@ import lombok.AllArgsConstructor;
 public class AuthController {
 
 
+private final LoginService loginService;
     
     @PostMapping("/user/login")
-    public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest loginParams){
+    public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest loginUserRequest){
+        loginService.loginUser(loginUserRequest);
         return null;
     }
     
